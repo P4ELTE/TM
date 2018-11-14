@@ -41,9 +41,8 @@ typedef bit<10> log_uint_t;
 const bit<32> N_QUEUES = 256;
 
 /* PIE parameters */
-const uint_t cTimeUpdate = 30000000; // Update time in ns (30 ms); timer frequency
+const bit<48> cTimeUpdate = 30000000; // Update time in ns (30 ms); timer frequency
 const uint_t cTarget = 10000000; // Target delay in ns (10 ms)
-const uint_t cQueueThreshold = 10000;
 const uint_t cMaxProb =0xffffffff;
 const bit<8> cPieScale = 8;
 const queueDepth_t cLimit = 1000; // 1000 packets ; it could also be part of the buffer extern
@@ -248,7 +247,7 @@ control cIngress(inout Parsed_packet hdr,
                    /* update states */
                    prob_reg.write((bit<32>) meta.qid, prob);
                    qdelay_reg.write((bit<32>) meta.qid, qdelay);
-                   time_next_reg.write((bit<32>) meta.qid,time_next);
+                   time_next_reg.write((bit<32>) meta.qid,time_next + cTimeUpdate);
                 }
                 bit<32> rand_val;
                 random<bit<32>>(rand_val, 0, cMaxProb);
