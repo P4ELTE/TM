@@ -24,7 +24,7 @@ Authors:
  *	RFC 8033: https://tools.ietf.org/html/rfc8033 
  *	Linux Kernel implementation: https://elixir.bootlin.com/linux/v4.13-rc7/source/net/sched/sch_pie.c
  *
- * Version 1: TBA
+ * Version 1: Fast path only implementation
  *
  *
 */
